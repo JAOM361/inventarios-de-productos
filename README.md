@@ -3,6 +3,8 @@ juan david ibarguen
 jorge andres ortiz
 yamil steven renteria
 
+aplicar pruebas unitarias y de integracion
+
 caracteristicas (descripcion basica):
 inventario de diferentes productos: id (automatico), nombre, descripcion, stock, precio
 registro de usuarios: id(automatico), nombre, correo, contraceña y rol
