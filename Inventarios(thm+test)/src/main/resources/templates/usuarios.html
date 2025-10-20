@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Usuarios</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+  <h1>Usuarios</h1>
+  <a th:href="@{/}">Volver</a>
+</header>
+<main>
+  <table>
+    <thead><tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Rol</th></tr></thead>
+    <tbody>
+      <tr th:each="u : ${usuarios}">
+        <td th:text="${u.id}"></td>
+        <td th:text="${u.nombre}"></td>
+        <td th:text="${u.correo}"></td>
+        <td th:text="${u.rol}"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Agregar usuario</h3>
+  <form th:action="@{/usuarios}" method="post" class="formulario">
+    <label>Nombre: <input type="text" name="nombre" /></label><br/>
+    <label>Correo: <input type="email" name="correo" /></label><br/>
+    <label>Contraseña: <input type="password" name="contrasena" /></label><br/>
+    <label>Rol: <input type="text" name="rol" /></label><br/>
+    <button type="submit">Guardar</button>
+  </form>
+</main>
+</body>
+</html>

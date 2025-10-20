@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Error del sistema</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background-color: #fafafa;
+      color: #333;
+      text-align: center;
+      margin-top: 10%;
+    }
+    h1 { color: #c0392b; }
+    .mensaje {
+      margin: 20px auto;
+      width: 60%;
+      padding: 20px;
+      border: 1px solid #eee;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    a {
+      text-decoration: none;
+      color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ups... algo salió mal</h1>
+  <div class="mensaje">
+    <p>Lo sentimos, ocurrió un error al procesar tu solicitud.</p>
+    <p th:if="${status}">Código: <strong th:text="${status}"></strong></p>
+    <p th:if="${error}">Tipo: <strong th:text="${error}"></strong></p>
+    <p th:if="${message}">Detalles: <em th:text="${message}"></em></p>
+    <p>Si el problema persiste, vuelve atrás e inténtalo otra vez.</p>
+  </div>
+  <a th:href="@{/}">Volver al inicio</a>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Movimientos</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+  <h1>Movimientos</h1>
+  <a th:href="@{/}">Volver</a>
+</header>
+<main>
+  <table>
+    <thead><tr><th>ID</th><th>Tipo</th><th>Producto</th><th>Cantidad</th><th>Fecha</th></tr></thead>
+    <tbody>
+      <tr th:each="m : ${movimientos}">
+        <td th:text="${m.id}"></td>
+        <td th:text="${m.tipo}"></td>
+        <td th:text="${m.producto.nombre}"></td>
+        <td th:text="${m.cantidad}"></td>
+        <td th:text="${m.fecha}"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Registrar movimiento</h3>
+  <form th:action="@{/movimientos}" method="post" class="formulario">
+    <label>Tipo:
+      <select name="tipo">
+        <option value="ENTRADA">ENTRADA</option>
+        <option value="SALIDA">SALIDA</option>
+      </select>
+    </label><br/>
+    <label>Producto:
+  <select name="productoId">
+    <option th:each="p : ${productos}" th:value="${p.id}" th:text="${p.nombre}"></option>
+  </select>
+    </label><br/>
+    <label>Cantidad: <input type="number" name="cantidad" /></label><br/>
+    <button type="submit">Registrar</button>
+  </form>
+</main>
+</body>
+</html>
