@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Inventarios</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+      <h2>Crear cuenta</h2>
+      <p>Únete a nosotros</p>
+
+<form th:action="@{/registro}" method="post">
+  <input type="text" name="nombre" placeholder="Nombre completo" required>
+  <input type="email" name="correo" placeholder="Correo electrónico" required>
+  <input type="password" name="contrasena" placeholder="Contraseña" required>
+
+  <select name="rol" required>
+    <option value="">Selecciona un rol</option>
+    <option value="ADMIN">Administrador</option>
+    <option value="USUARIO">Usuario</option>
+  </select>
+
+  <button type="submit">Registrarse</button>
+</form>
+
+<p class="login-text">
+  ¿Ya tienes una cuenta? <a th:href="@{/inicio}">Inicia sesión</a>
+</p>
+
+    </div>
+  </div>
+
+</body>
+</html>

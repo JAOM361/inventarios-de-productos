@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio de Sesión - Yosemite National Park</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="icon" href="Logo.png" type="logo">
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+      <h2>Iniciar sesión</h2>
+      <p>Bienvenido de nuevo a inventarios Pro  </p>
+<form th:action="@{/inicio}" method="post">
+  <input type="email" name="correo" placeholder="Correo electrónico" required>
+  <input type="password" name="contrasena" placeholder="Contraseña" required>
+  <button type="submit">Ingresar</button>
+</form>
+
+<p th:if="${error}" th:text="${error}" style="color:red;"></p>
+
+<p class="login-text">
+  ¿No tienes cuenta? <a th:href="@{/registro}">Regístrate aquí</a>
+</p>
+
+    </div>
+  </div>
+
+</body>
+</html>
