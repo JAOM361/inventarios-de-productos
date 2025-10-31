@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Producto</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="icon" href="Logo.png" type="image/png">
+</head>
+<body>
+  <h2>Editar producto</h2>
+
+  <form th:action="@{/productos/editar/{id}(id=${producto.id})}" 
+        method="post" 
+        enctype="multipart/form-data">
+
+    <label>Nombre:</label>
+    <input type="text" name="nombre" th:value="${producto.nombre}" required><br/>
+
+    <label>Descripción:</label>
+    <textarea name="descripcion" required 
+              th:text="${producto.descripcion}"></textarea><br/>
+
+    <label>Precio:</label>
+    <input type="number" name="precio" step="0.01" th:value="${producto.precio}" required><br/>
+
+    <label>Stock:</label>
+    <input type="number" name="stock" th:value="${producto.stock}" required><br/>
+
+    <label>Imagen actual:</label><br>
+    <img th:if="${producto.imagen != null}" 
+         th:src="@{'/uploads/' + ${producto.imagen}}" 
+         alt="Imagen del producto" width="100"><br/>
+
+    <label>Cambiar imagen:</label>
+    <input type="file" name="imagenArchivo" accept="image/*"><br/><br/>
+
+    <button type="submit">Guardar cambios</button>
+  </form>
+
+  <a th:href="@{/productos}">Volver</a>
+</body>
+</html>

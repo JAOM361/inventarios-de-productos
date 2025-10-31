@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="icon" th:href="@{/Logo.png}" type="image/png">
+
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Inventarios <span>Pro</span></h1>
+        <div class="user-info" style="float: right; text-align: right;">
+          <p th:text="${session.usuarioActual != null ? '👤 ' + session.usuarioActual.nombre : ''}"></p>
+          <a th:href="@{/}" style="color: red; font-weight: bold;">Cerrar sesión</a>
+        </div>
+      <nav>
+        <a th:href="@{/productos}">Productos</a>
+        <a th:href="@{/usuarios}">Usuarios</a>
+        <a th:href="@{/movimientos}">Movimientos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <h2>Bienvenido</h2>
+      <p>Usa el menú para navegar por las secciones del sistema.</p>
+
+      <!-- Galería de productos -->
+      <div class="galeria" th:if="${productos != null}">
+        <div class="tarjeta" th:each="p : ${productos}">
+          <img th:if="${p.imagen != null}" th:src="@{'/uploads/' + ${p.imagen}}" alt="Imagen del producto">
+          <div class="info">
+            <h4 th:text="${p.nombre}">Nombre producto</h4>
+          </div>
+          <div class="overlay">
+            <p th:text="${p.descripcion}">Descripción</p>
+            <p th:text="'Stock: ' + ${p.stock}">Stock</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Inventarios Pro — Todos los derechos reservados</p>
+  </footer>
+
+</body>
+</html>

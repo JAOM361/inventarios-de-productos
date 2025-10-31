@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header style="background-color:#2e2e2e; color:white; padding:10px; display:flex; justify-content:space-between; align-items:center;">
+    <div>
+        <h2 style="margin:0;">Inventarios Pro</h2>
+    </div>
+    <div style="display:flex; align-items:center; gap:10px;">
+        <span th:if="${usuario != null}">
+            👤 <strong th:text="${usuario.nombre}">Usuario</strong>
+        </span>
+        <a th:href="@{/logout}" style="color:white; text-decoration:none; background:#e74c3c; padding:5px 10px; border-radius:5px;">Cerrar sesión</a>
+    </div>
+</header>
+</body>
+</html>

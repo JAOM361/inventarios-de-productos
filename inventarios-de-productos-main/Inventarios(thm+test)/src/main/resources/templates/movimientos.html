@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movimientos</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="icon" th:href="@{/Logo.png}" type="image/png">
+</head>
+<body>
+<header>
+  <h1>Movimientos</h1>
+  <div class="user-info" style="float: right; text-align: right;">
+    <p th:text="${session.usuarioActual != null ? '👤 ' + session.usuarioActual.nombre : ''}"></p>
+    <a th:href="@{/}" style="color: red; font-weight: bold;">Cerrar sesión</a>
+  </div>
+  <a th:href="@{/index}" style="color: red; font-weight: bold;">Volver</a>
+</header>
+
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tipo</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Fecha</th>
+        <th>Usuario</th> <!-- nuevo -->
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="m : ${movimientos}">
+        <td th:text="${m.id}"></td>
+        <td th:text="${m.tipo}"></td>
+        <td th:text="${m.producto.nombre}"></td>
+        <td th:text="${m.cantidad}"></td>
+        <td th:text="${#temporals.format(m.fecha, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${m.usuario != null ? m.usuario.nombre : '---'}"></td> <!-- muestra quién lo hizo -->
+        <td>
+          <a th:href="@{/movimientos/editar/{id}(id=${m.id})}">Editar</a> |
+          <a th:href="@{/movimientos/eliminar/{id}(id=${m.id})}"
+             onclick="return confirm('¿Seguro que deseas eliminar este movimiento?')">Eliminar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Registrar movimiento</h3>
+  <form th:action="@{/movimientos}" method="post" class="formulario">
+    <label>Tipo:
+      <select name="tipo" required>
+        <option value="ENTRADA">ENTRADA</option>
+        <option value="SALIDA">SALIDA</option>
+      </select>
+    </label><br/>
+
+    <label>Producto:
+      <select name="productoId" required>
+        <option th:each="p : ${productos}" th:value="${p.id}" th:text="${p.nombre}"></option>
+      </select>
+    </label><br/>
+
+    <label>Cantidad: <input type="number" name="cantidad" required /></label><br/>
+    <button type="submit">Registrar</button>
+  </form>
+</main>
+</body>
+</html>
